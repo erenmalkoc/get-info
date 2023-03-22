@@ -23,8 +23,10 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final String title;
-  List<Student> students = [Student('ali', 'ahmet', 40),Student('kerem', 'samet',40)];
-
+  List<Student> students = [
+    Student('ali', 'ahmet', 40),
+    Student('kerem', 'samet', 40)
+  ];
 
   MyHomePage({super.key, required this.title});
 
@@ -36,8 +38,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   Student selectedStudent = Student('', '', 0);
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -70,105 +70,106 @@ class _MyHomePageState extends State<MyHomePage> {
                 //Icon(Icons.done_outline_sharp),
                 onTap: () {
                   setState(() {
-                    this.selectedStudent=widget.students[index];
+                    this.selectedStudent = widget.students[index];
                   });
-
                 },
-
-
               );
             },
           ),
         ),
-        ElevatedButton(onPressed:(){
-    setState(() {
 
-    });
-    } , child: Text('Yenile')),
         Container(
           padding: EdgeInsets.all(14),
-          decoration: BoxDecoration(color: Colors.black12, borderRadius: BorderRadius.circular(12),),
-          child: Text('Selected student : ${selectedStudent.name} ${selectedStudent.surname}',
-          style: TextStyle(fontWeight: FontWeight.w400,
-          fontSize: 18
+          decoration: BoxDecoration(
+            color: Colors.black12,
+            borderRadius: BorderRadius.circular(12),
           ),
+          child: Text(
+            'Seçilen Öğrenci : ${selectedStudent.name} ${selectedStudent.surname}',
+            style: TextStyle(fontWeight: FontWeight.w400, fontSize: 18),
           ),
         ),
-        SizedBox(height: 20,),
-        Row(
-          children: <Widget>[
-            SizedBox(
-              width: 5,
-            ),
-            Flexible(
-              fit: FlexFit.tight,
-              flex: 8,
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
-                ),
+        SizedBox(
+          height: 20,
+        ),
+        Container(
+          margin: EdgeInsets.all(10),
+          child: Row(
+            children: <Widget>[
+              SizedBox(
+                width: 5,
+              ),
+              Flexible(
+                fit: FlexFit.tight,
+                flex: 8,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.blue,
+                    ),
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => EditStudent(widget.students)),
+                      );
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.add_circle_outlined),
+                        SizedBox(width: 10),
+                        Text('Öğrenci Ekle'),
+                      ],
+                    )),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+              Flexible(
+                fit: FlexFit.tight,
+                flex: 6,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                    ),
+                    onPressed: () {
+                     setState(() {
 
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EditStudent(widget.students)),
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.add_circle_outlined),
-                      SizedBox(width: 10),
-                      Text('Öğrenci Ekle'),
-                    ],
-                  )),
-            ),
-            SizedBox(
-              width: 5,
-            ),
-            Flexible(
-              fit: FlexFit.tight,
-              flex: 6,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.green,
-                  ),
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => EditStudent(widget.students)),
-                    );
-                  },
-                  child: Row(
-                    children: [
-                      Icon(Icons.change_circle_outlined),
-                      SizedBox(width: 5),
-                      Text('Güncelle'),
-                    ],
-                  )),
-            ),
-            SizedBox(
-              width: 3,
-            ),
-            Flexible(
-              fit: FlexFit.tight,
-              flex: 4,
-              child: ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: Colors.red,
-                  ),
-                  onPressed:() {deleteStudent(selectedStudent,widget.students);},
-                  child: Row(
-                    children: [
-                      Icon(Icons.delete_forever),
-                      SizedBox(width: 5),
-                      Text('Sil'),
-                    ],
-                  )),
-            ),
-            SizedBox(
-              width: 5,
-            ),
-          ],
+                     });
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.change_circle_outlined),
+                        SizedBox(width: 5),
+                        Text('Güncelle'),
+                      ],
+                    )),
+              ),
+              SizedBox(
+                width: 3,
+              ),
+              Flexible(
+                fit: FlexFit.tight,
+                flex: 4,
+                child: ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.red,
+                    ),
+                    onPressed: () {
+                      deleteStudent(selectedStudent, widget.students);
+                    },
+                    child: Row(
+                      children: [
+                        Icon(Icons.delete_forever),
+                        SizedBox(width: 5),
+                        Text('Sil'),
+                      ],
+                    )),
+              ),
+              SizedBox(
+                width: 5,
+              ),
+            ],
+          ),
         )
       ],
     );
@@ -188,22 +189,13 @@ class _MyHomePageState extends State<MyHomePage> {
     print(name);
   }
 
-  deleteStudent(Student student,List students) {
-for(int i=0;i<students.length;i++){
-  if(student.name==students[i].name){
-    setState(() {
-      students.removeAt(i);
-    });
-
-
+  deleteStudent(Student student, List students) {
+    for (int i = 0; i < students.length; i++) {
+      if (student.name == students[i].name) {
+        setState(() {
+          students.removeAt(i);
+        });
+      }
+    }
   }
-
-}
-
-
-
-
-  }
-
-
 }

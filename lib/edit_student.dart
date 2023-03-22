@@ -98,48 +98,60 @@ class _StudentPageState extends State<EditStudent> {
 
 
               SizedBox(height: 20,),
+
               Container(
                 margin: EdgeInsets.only(right: 110,left: 110),
-                child: ElevatedButton(
-                  autofocus: true,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.lightBlueAccent,
-                    ),
-                    onPressed: (){
+                child: Column(
+                  children: [
+                    ElevatedButton(
+                        autofocus: true,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.lightBlueAccent,
+                        ),
+                        onPressed: (){
 
-                      key.currentState!.save();
+                          key.currentState!.save();
 
-                      setState(() {
-                        widget.students.add(student);
-                      });
-                      Navigator.pop(context);
+                          setState(() {
+                            widget.students.add(student);
+                          });
+                          Navigator.pop(context);
 
-                    },
+                        },
 
-                    child: Row(
-                      children: [
-                        Icon(Icons.add_circle_outlined),
-                        SizedBox(width: 12),
-                        Center(child: Text('Ekle')),
-                      ],
-                    )),
-              ),
-              Container(
-                margin: EdgeInsets.only(right: 110,left: 110),
-                child: ElevatedButton(
-                    autofocus: true,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.lightBlueAccent,
-                    ),
-                    onPressed: null,
+                        child: Row(
+                          children: [
+                            Icon(Icons.add_circle_outlined),
+                            SizedBox(width: 12),
+                            Center(child: Text('Ekle')),
+                          ],
+                        )),
+                    ElevatedButton(
+                        autofocus: true,
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: Colors.lightBlueAccent,
+                        ),
+                        onPressed: null,
+                        child: Row(
+                          children: [
+                            Icon(Icons.change_circle_outlined),
+                            SizedBox(width: 12),
+                            Center(child: Text('Güncelle')),
+                          ],
+                        )),
+                  ],
 
-                    child: Row(
-                      children: [
-                        Icon(Icons.change_circle_outlined),
-                        SizedBox(width:12),
-                        Center(child: Text('Güncelle')),
-                      ],
-                    )),
+
+
+
+
+
+
+
+
+
+
+                ),
               ),
             ],
           ),
